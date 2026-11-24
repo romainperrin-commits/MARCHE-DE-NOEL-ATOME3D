@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#d12a20">
+<link rel="icon" href="data:,">
+<title>Le marché de Noël d'Atome3D</title>
+<link rel="preload" as="image" href="assets/bg.webp">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;background:#cf2b21;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#stage{position:fixed;inset:0;display:flex;justify-content:center;overflow:hidden;background:#cf2b21 url(assets/bg.webp) center bottom/cover no-repeat}
+@media (min-aspect-ratio:3/5){#stage{background-image:url(assets/bg_wide.webp);background-size:auto 100%;background-repeat:repeat-x;background-position:center bottom}}
+#art{position:relative;height:100vh;height:100svh;width:min(100vw,calc(100vh*.5625));width:min(100vw,calc(100svh*.5625));container-type:size}
+.act{display:contents}
+.hdr::before{content:"";position:absolute;z-index:-1;left:50%;width:100vw;transform:translateX(-50%);top:18.44%;height:33.333%;background:url(assets/guirlande_tile.webp) center/auto 100% repeat-x;pointer-events:none}
+.screen{position:absolute;inset:0}
+.screen[hidden]{display:none}
+.screen.in{animation:scin .38s cubic-bezier(.2,.8,.2,1) both}
+@keyframes scin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.el{position:absolute;display:block;border:0;padding:0;background:none;line-height:0;cursor:default}
+.el img{width:100%;height:auto;display:block;-webkit-user-drag:none;user-select:none;pointer-events:none}
+a.el,button.el{cursor:pointer}
+.hdr{z-index:3}
+.back{z-index:4}.back svg{width:100%;height:auto;display:block;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
+.xbtn{z-index:4}.xbtn svg{width:100%;height:auto;display:block;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
+@media (min-aspect-ratio:3/5){.xbtn{--cw:clamp(48px,8vmin,84px);left:calc((min(100vw,100svh*.5625) - 100vw)/2 + 2.4vmin)!important;top:2.4vmin!important;width:var(--cw)!important}}
+@media (min-aspect-ratio:3/5){.back{left:calc((min(100vw,100svh*.5625) - 100vw)/2 + 2.4vmin)!important;top:2.4vmin!important;width:clamp(48px,8vmin,84px)!important}}
+#snow{position:fixed;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+.btn{transition:transform .18s cubic-bezier(.2,.8,.2,1),filter .18s}
+.btn:hover{transform:scale(1.035);filter:brightness(1.06)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:3px solid #ffd93b;outline-offset:4px;border-radius:14px}
+.screen.in .d1{animation:pop .5s .05s both}.screen.in .d2{animation:pop .5s .15s both}.screen.in .d3{animation:pop .5s .25s both}
+@keyframes pop{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:none}}
+.float{animation:bob 4.6s ease-in-out infinite}
+.f2{animation-delay:-1.2s}.f3{animation-delay:-2.4s}.f4{animation-delay:-3.4s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -5px}}
+.profit{animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.12)}}
+.gift{animation:giftin .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes giftin{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+#toast{position:absolute;left:50%;top:21%;transform:translate(-50%,-10px);background:#3f9d1f;color:#fff;font-weight:800;letter-spacing:.04em;font-size:clamp(13px,3.6cqw,17px);padding:.7em 1.3em;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,255,255,.35);opacity:0;pointer-events:none;transition:.25s;z-index:9;white-space:nowrap}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body>
+<main id="stage" aria-live="polite"><div id="art">
+<section class="screen" id="menu" data-screen="menu" hidden><a class="el btn xbtn" href="https://atome3d.com" style="left:3.5%;top:1.2%;width:11%" aria-label="Quitter vers atome3d.com"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="4" y="6" width="112" height="110" rx="30" fill="#a8733a"/><rect x="4" y="2" width="112" height="108" rx="30" fill="#c89458"/><path d="M40 32l40 40M80 32L40 72" transform="translate(0 6)" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round"/></svg></a><a class="el hdr" href="#menu" style="left:21.481%;top:0.573%;width:57.037%" aria-label="Le marché de Noël d'Atome3D — accueil"><img src="assets/sign.webp" alt="Le marché de Noël d'Atome3D" draggable="false"></a><a class="el btn d1" style="left:5.463%;top:26.094%;width:88.981%" href="#cadeaux"><img src="assets/menu_cadeaux.webp" alt="Cadeaux" draggable="false"></a><a class="el btn d2" style="left:5.463%;top:42.292%;width:89.074%" data-link="game"><img src="assets/menu_jeu.webp" alt="Jeu" draggable="false"></a><a class="el btn d3" style="left:5.463%;top:59.740%;width:88.981%" data-link="stl" target="_blank" rel="noopener"><img src="assets/menu_stl.webp" alt="STL de Noël" draggable="false"></a></section>
+<section class="screen" id="cadeaux" data-screen="cadeaux" hidden><a class="el hdr" href="#menu" style="left:21.481%;top:0.573%;width:57.037%" aria-label="Le marché de Noël d'Atome3D — accueil"><img src="assets/sign.webp" alt="Le marché de Noël d'Atome3D" draggable="false"></a><a class="el btn back" href="#menu" style="left:3.5%;top:9.8%;width:11%" aria-label="Retour"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="4" y="6" width="112" height="110" rx="30" fill="#a8733a"/><rect x="4" y="2" width="112" height="108" rx="30" fill="#c89458"/><path d="M71 32 41 60l30 28" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="el btn float f1" style="left:10.370%;top:17.500%;width:80.741%" href="#cadeau-1"><img src="assets/home1.webp" alt="Cadeau 1" draggable="false"></a><a class="el btn float f2" style="left:5.370%;top:33.854%;width:83.148%" href="#cadeau-2"><img src="assets/home2.webp" alt="Cadeau 2" draggable="false"></a><a class="el btn float f3" style="left:12.222%;top:48.698%;width:84.444%" href="#cadeau-3"><img src="assets/home3.webp" alt="Cadeau 3" draggable="false"></a><a class="el btn float f4" style="left:4.537%;top:67.500%;width:90.926%" href="#cadeau-4"><img src="assets/home4.webp" alt="Cadeau 4" draggable="false"></a><div class="el note" style="left:3.796%;top:84.792%;width:92.222%" ><img src="assets/home_note.webp" alt="Un seul cadeau à choisir, alors fais le bon choix" draggable="false"></div></section>
+<section class="screen" id="cadeau-1" data-screen="cadeau-1" hidden><a class="el hdr" href="#menu" style="left:21.481%;top:0.573%;width:57.037%" aria-label="Le marché de Noël d'Atome3D — accueil"><img src="assets/sign.webp" alt="Le marché de Noël d'Atome3D" draggable="false"></a><a class="el btn back" href="#cadeaux" style="left:3.5%;top:9.8%;width:11%" aria-label="Retour"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="4" y="6" width="112" height="110" rx="30" fill="#a8733a"/><rect x="4" y="2" width="112" height="108" rx="30" fill="#c89458"/><path d="M71 32 41 60l30 28" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="el gift" style="left:3.148%;top:17.552%;width:93.796%" ><img src="assets/gift1.webp" alt="Cadeau 1" draggable="false"></div><div class="act"><div class="el codebox" style="left:19.352%;top:66.250%;width:43.056%" ><img src="assets/code.webp" alt="Avec le code NOEL26" draggable="false"></div><button class="el btn copy" style="left:62.037%;top:66.302%;width:18.611%" data-act="copy" type="button"><img src="assets/copy.webp" alt="Copier le code" draggable="false"></button><a class="el btn profit" style="left:19.352%;top:76.562%;width:61.296%" data-act="profit" data-gift="1" href="#"><img src="assets/profit.webp" alt="J'en profite" draggable="false"></a></div><div class="el note" style="left:3.889%;top:84.792%;width:92.222%" ><img src="assets/note.webp" alt="Valable sur votre prochaine commande d'un montant minimum de 50€" draggable="false"></div></section><section class="screen" id="cadeau-2" data-screen="cadeau-2" hidden><a class="el hdr" href="#menu" style="left:21.481%;top:0.573%;width:57.037%" aria-label="Le marché de Noël d'Atome3D — accueil"><img src="assets/sign.webp" alt="Le marché de Noël d'Atome3D" draggable="false"></a><a class="el btn back" href="#cadeaux" style="left:3.5%;top:9.8%;width:11%" aria-label="Retour"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="4" y="6" width="112" height="110" rx="30" fill="#a8733a"/><rect x="4" y="2" width="112" height="108" rx="30" fill="#c89458"/><path d="M71 32 41 60l30 28" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="el gift" style="left:3.056%;top:18.125%;width:93.889%" ><img src="assets/gift2.webp" alt="Cadeau 2" draggable="false"></div><div class="act"><div class="el codebox" style="left:19.352%;top:66.250%;width:43.056%" ><img src="assets/code.webp" alt="Avec le code NOEL26" draggable="false"></div><button class="el btn copy" style="left:62.037%;top:66.302%;width:18.611%" data-act="copy" type="button"><img src="assets/copy.webp" alt="Copier le code" draggable="false"></button><a class="el btn profit" style="left:19.352%;top:76.562%;width:61.296%" data-act="profit" data-gift="2" href="#"><img src="assets/profit.webp" alt="J'en profite" draggable="false"></a></div><div class="el note" style="left:3.889%;top:84.792%;width:92.222%" ><img src="assets/note.webp" alt="Valable sur votre prochaine commande d'un montant minimum de 50€" draggable="false"></div></section><section class="screen" id="cadeau-3" data-screen="cadeau-3" hidden><a class="el hdr" href="#menu" style="left:21.481%;top:0.573%;width:57.037%" aria-label="Le marché de Noël d'Atome3D — accueil"><img src="assets/sign.webp" alt="Le marché de Noël d'Atome3D" draggable="false"></a><a class="el btn back" href="#cadeaux" style="left:3.5%;top:9.8%;width:11%" aria-label="Retour"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="4" y="6" width="112" height="110" rx="30" fill="#a8733a"/><rect x="4" y="2" width="112" height="108" rx="30" fill="#c89458"/><path d="M71 32 41 60l30 28" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="el gift" style="left:3.056%;top:17.708%;width:93.889%" ><img src="assets/gift3.webp" alt="Cadeau 3" draggable="false"></div><div class="act"><div class="el codebox" style="left:19.352%;top:66.250%;width:43.056%" ><img src="assets/code.webp" alt="Avec le code NOEL26" draggable="false"></div><button class="el btn copy" style="left:62.037%;top:66.302%;width:18.611%" data-act="copy" type="button"><img src="assets/copy.webp" alt="Copier le code" draggable="false"></button><a class="el btn profit" style="left:19.352%;top:76.562%;width:61.296%" data-act="profit" data-gift="3" href="#"><img src="assets/profit.webp" alt="J'en profite" draggable="false"></a></div><div class="el note" style="left:3.889%;top:84.792%;width:92.222%" ><img src="assets/note.webp" alt="Valable sur votre prochaine commande d'un montant minimum de 50€" draggable="false"></div></section><section class="screen" id="cadeau-4" data-screen="cadeau-4" hidden><a class="el hdr" href="#menu" style="left:21.481%;top:0.573%;width:57.037%" aria-label="Le marché de Noël d'Atome3D — accueil"><img src="assets/sign.webp" alt="Le marché de Noël d'Atome3D" draggable="false"></a><a class="el btn back" href="#cadeaux" style="left:3.5%;top:9.8%;width:11%" aria-label="Retour"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="4" y="6" width="112" height="110" rx="30" fill="#a8733a"/><rect x="4" y="2" width="112" height="108" rx="30" fill="#c89458"/><path d="M71 32 41 60l30 28" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="el gift" style="left:3.056%;top:21.927%;width:93.796%" ><img src="assets/gift4.webp" alt="Cadeau 4" draggable="false"></div><div class="act"><div class="el codebox" style="left:19.352%;top:66.250%;width:43.056%" ><img src="assets/code.webp" alt="Avec le code NOEL26" draggable="false"></div><button class="el btn copy" style="left:62.037%;top:66.302%;width:18.611%" data-act="copy" type="button"><img src="assets/copy.webp" alt="Copier le code" draggable="false"></button><a class="el btn profit" style="left:19.352%;top:76.562%;width:61.296%" data-act="profit" data-gift="4" href="#"><img src="assets/profit.webp" alt="J'en profite" draggable="false"></a></div><div class="el note" style="left:3.889%;top:84.792%;width:92.222%" ><img src="assets/note.webp" alt="Valable sur votre prochaine commande d'un montant minimum de 50€" draggable="false"></div></section>
+</div><canvas id="snow" aria-hidden="true"></canvas><div id="toast" role="status">Code copié !</div>
+</main>
+<script src="config.js"></script>
+<script>
+(function(){
+  var C=window.HUB_CONFIG, screens=[].slice.call(document.querySelectorAll('.screen')), toast=document.getElementById('toast'), tt;
+  function show(){
+    var id=(location.hash||'#menu').slice(1); if(!document.getElementById(id)||!document.getElementById(id).dataset.screen) id='menu';
+    screens.forEach(function(s){ var on=s.id===id; s.hidden=!on; s.classList.toggle('in',on); });
+  }
+  window.addEventListener('hashchange',show); show();
+  function flash(msg){ toast.textContent=msg; toast.classList.add('on'); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove('on')},1800); }
+  function copy(){
+    var t=C.code;
+    if(navigator.clipboard&&window.isSecureContext) return navigator.clipboard.writeText(t).then(function(){flash('Code '+t+' copié !')},function(){fallback(t)});
+    fallback(t);
+  }
+  function fallback(t){ var a=document.createElement('textarea'); a.value=t; a.style.cssText='position:fixed;opacity:0'; document.body.appendChild(a); a.select(); try{document.execCommand('copy');flash('Code '+t+' copié !')}catch(e){flash('Code : '+t)} a.remove(); }
+  function cartUrl(g){
+    var v=((C.gifts[g]||{}).variants||[]).filter(Boolean);
+    if(v.length) return C.shop+'/cart/'+v.map(function(i){return i+':1'}).join(',')+'?discount='+encodeURIComponent(C.code);
+    return C.shop+'/discount/'+encodeURIComponent(C.code);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-act],[data-link]'); if(!a) return;
+    if(a.dataset.act==='copy'){ e.preventDefault(); copy(); }
+    else if(a.dataset.act==='profit'){ e.preventDefault(); try{navigator.clipboard&&window.isSecureContext&&navigator.clipboard.writeText(C.code)}catch(_){} window.location.href=cartUrl(a.dataset.gift); }
+    else if(a.dataset.link==='game'){ e.preventDefault(); window.location.href=C.gameUrl; }
+    else if(a.dataset.link==='stl'){ a.href=C.stlUrl; }
+  });
+})();
+</script>
+<script>
+(function(){
+  var c=document.getElementById('snow'); if(!c||matchMedia('(prefers-reduced-motion:reduce)').matches){ if(c)c.remove(); return; }
+  var x=c.getContext('2d'),W,H,D,F=[],raf;
+  /* ---- vent : champ de vitesse de l'air (fluide incompressible simplifie) ---- */
+  var CS=20, GW,GH, U,V,U2,V2,P,DV;          // grille d'air
+  var RAD=2.2,            // rayon d'entrainement de l'air par le curseur (en cases)
+      PUSH=.30,           // quantite d'air entrainee par le curseur
+      DAMP=.972,          // dissipation du vent a chaque image
+      GAIN=1.0;           // sensibilite des flocons au vent
+  var lx=null,ly=null;
+  function grid(){ GW=Math.max(8,Math.ceil(W/CS)); GH=Math.max(8,Math.ceil(H/CS)); var n=GW*GH;
+    U=new Float32Array(n);V=new Float32Array(n);U2=new Float32Array(n);V2=new Float32Array(n);P=new Float32Array(n);DV=new Float32Array(n); }
+  function size(){ D=Math.min(window.devicePixelRatio||1,2); W=innerWidth; H=innerHeight; c.width=W*D; c.height=H*D; x.setTransform(D,0,0,D,0,0); grid();
+    var n=Math.round(Math.min(130,Math.max(45,W*H/14000))); while(F.length<n)F.push(mk(true)); F.length=n; }
+  function mk(init){ var k=Math.max(.7,Math.min(1.5,H/900)), r=(1.2+Math.random()*2.6)*k;
+    return {x:Math.random()*W,y:init?Math.random()*H:-8,r:r,v:(.35+r*.28)*(.8+Math.random()*.4),a:.22+Math.random()*.33,s:Math.random()*6.28,w:.4+Math.random()*.9,vx:0,vy:0}; }
+  function inject(px,py,dx,dy){
+    var gx=px/CS-.5, gy=py/CS-.5, x0=Math.floor(gx-RAD-1), x1=Math.ceil(gx+RAD+1), y0=Math.floor(gy-RAD-1), y1=Math.ceil(gy+RAD+1);
+    for(var j=y0;j<=y1;j++){ if(j<1||j>=GH-1) continue;
+      for(var i=x0;i<=x1;i++){ if(i<1||i>=GW-1) continue;
+        var d=Math.hypot(i-gx,j-gy); if(d>RAD+1) continue;
+        var g=Math.exp(-d*d/(RAD*RAD*.6)), k=j*GW+i;
+        U[k]+=dx*g*PUSH; V[k]+=dy*g*PUSH; } }
+  }
+  addEventListener('pointermove',function(e){
+    if(lx!==null){ var dx=e.clientX-lx, dy=e.clientY-ly, sp=Math.hypot(dx,dy);
+      if(sp>1){ if(sp>45){ dx*=45/sp; dy*=45/sp; } inject(e.clientX,e.clientY,dx,dy); } }
+    lx=e.clientX; ly=e.clientY; },{passive:true});
+  document.addEventListener('mouseleave',function(){ lx=ly=null; });
+  function samp(A,px,py){ var gx=px/CS-.5, gy=py/CS-.5; if(gx<0)gx=0; else if(gx>GW-1.001)gx=GW-1.001; if(gy<0)gy=0; else if(gy>GH-1.001)gy=GH-1.001;
+    var i=gx|0, j=gy|0, fx=gx-i, fy=gy-j, k=j*GW+i;
+    return (A[k]*(1-fx)+A[k+1]*fx)*(1-fy)+(A[k+GW]*(1-fx)+A[k+GW+1]*fx)*fy; }
+  function project(){
+    var i,j,k,it;
+    for(j=1;j<GH-1;j++)for(i=1;i<GW-1;i++){ k=j*GW+i; DV[k]=-.5*(U[k+1]-U[k-1]+V[k+GW]-V[k-GW]); P[k]=0; }
+    for(it=0;it<14;it++) for(j=1;j<GH-1;j++)for(i=1;i<GW-1;i++){ k=j*GW+i; P[k]=(DV[k]+P[k-1]+P[k+1]+P[k-GW]+P[k+GW])*.25; }
+    for(j=1;j<GH-1;j++)for(i=1;i<GW-1;i++){ k=j*GW+i; U[k]-=.5*(P[k+1]-P[k-1]); V[k]-=.5*(P[k+GW]-P[k-GW]); }
+  }
+  function air(){
+    var i,j,k,mx=0;
+    for(k=0;k<U.length;k++){ var a=Math.abs(U[k])+Math.abs(V[k]); if(a>mx)mx=a; }
+    if(mx<.003){ return; }
+    project();
+    /* advection : l'air est transporte par son propre mouvement (cree les remous) */
+    for(j=1;j<GH-1;j++)for(i=1;i<GW-1;i++){ k=j*GW+i; var bx=(i+.5)*CS-U[k]*1.0, by=(j+.5)*CS-V[k]*1.0;
+      U2[k]=samp(U,bx,by)*DAMP; V2[k]=samp(V,bx,by)*DAMP; }
+    var t=U;U=U2;U2=t; t=V;V=V2;V2=t;
+    project();
+  }
+  function tick(){ x.clearRect(0,0,W,H); air();
+    for(var i=0;i<F.length;i++){ var f=F[i]; f.s+=.012;
+      var wu=samp(U,f.x,f.y)*GAIN, wv=samp(V,f.x,f.y)*GAIN, kk=.09/(.6+f.r*.28);
+      f.vx+=(Math.sin(f.s)*f.w*.5+wu-f.vx)*kk*3; f.vy+=(f.v+wv-f.vy)*kk*3;
+      if(f.vx>16)f.vx=16; else if(f.vx<-16)f.vx=-16; if(f.vy>16)f.vy=16; else if(f.vy<-10)f.vy=-10;
+      f.x+=f.vx; f.y+=f.vy;
+      if(f.y>H+8||f.x<-40||f.x>W+40||f.y<-60){ F[i]=mk(false); continue; }
+      x.globalAlpha=f.a; x.fillStyle='#fff'; x.beginPath(); x.arc(f.x,f.y,f.r,0,6.283); x.fill(); }
+    raf=requestAnimationFrame(tick); }
+  addEventListener('resize',size); size(); tick();
+  document.addEventListener('visibilitychange',function(){ cancelAnimationFrame(raf); if(!document.hidden)tick(); });
+})();
+</script>
+</body></html>
